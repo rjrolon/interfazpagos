@@ -1,4 +1,3 @@
-
 document.getElementById("formPago").addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -36,10 +35,21 @@ function mostrarPagos() {
 
     pagos.forEach(pago => {
         const li = document.createElement("li");
-        li.textContent = `${pago.fecha} - ${pago.descripcion} - ${pago.proveedor} - $${pago.monto}`;
+        li.textContent = ${pago.fecha} - ${pago.descripcion} - ${pago.proveedor} - $${pago.monto};
         listaPagos.appendChild(li);
     });
 }
+
+// Función para exportar los pagos a Excel
+document.getElementById("exportarBtn").addEventListener("click", function() {
+    const pagos = JSON.parse(localStorage.getItem("pagos")) || [];
+    const ws = XLSX.utils.json_to_sheet(pagos);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Pagos");
+
+    // Guardar el archivo Excel
+    XLSX.writeFile(wb, "registros_pagos.xlsx");
+});
 
 // Mostrar pagos al cargar la página
 mostrarPagos();
