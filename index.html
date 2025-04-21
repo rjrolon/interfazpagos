@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Pagos</title>
+    <title>Registro de Pagos</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Incluir la librería SheetJS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
 </head>
 <body>
@@ -14,13 +13,24 @@
         <form id="formPago">
             <input type="date" id="fecha" required placeholder="Fecha">
             <input type="text" id="descripcion" required placeholder="Descripción">
-            <input type="text" id="proveedor" required placeholder="Proveedor o Método de Pago">
             <input type="number" id="monto" required placeholder="Monto">
+            <select id="banco">
+                <option value="">Seleccionar Banco</option>
+            </select>
+            <select id="subcuenta">
+                <option value="">Seleccionar Subcuenta</option>
+            </select>
             <button type="submit">Registrar Pago</button>
         </form>
 
+        <button type="button" id="agregarBancoBtn">Agregar Banco</button>
+        <button type="button" id="agregarSubcuentaBtn">Agregar Subcuenta</button>
+
         <h2>Pagos Realizados</h2>
         <ul id="listaPagos"></ul>
+
+        <h3>Datos Bancarios</h3>
+        <ul id="listaBancos"></ul>
 
         <button id="exportarBtn">Exportar a Excel</button>
     </div>
